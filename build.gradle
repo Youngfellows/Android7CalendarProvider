@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.3'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+
+    //在工程的外部build.gradle里面配置提高编译时lib库的引用优先级
+    //有多个jar包就用分号隔开
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            //注：app\\libs\\framework.jar是framework.jar 在项目的中存放的路径
+            options.compilerArgs.add('-Xbootclasspath/p:calendar_provider\\libs\\framework.jar')
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

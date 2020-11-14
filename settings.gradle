@@ -1,0 +1,3 @@
+rootProject.name='CalendarProvider7'
+include ':app', ':common', ':calendar_common'
+include ':calendar_provider'
