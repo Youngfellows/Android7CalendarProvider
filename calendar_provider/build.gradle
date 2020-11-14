@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.android.providers.calendar2"
 
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 30
 
         versionCode 1
