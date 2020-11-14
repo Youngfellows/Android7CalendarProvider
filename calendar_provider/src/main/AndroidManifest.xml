@@ -16,7 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.android.providers.calendar"
-        android:sharedUserId="android.uid.calendar">
+        >
+    <!--android:sharedUserId="android.uid.calendar"-->
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
@@ -45,7 +46,7 @@
              (android.test) library. -->
         <uses-library android:name="android.test.runner" />
 
-        <provider android:name="CalendarProvider2" android:authorities="com.android.calendar"
+        <provider android:name="CalendarProvider2" android:authorities="com.android.calendar2"
                 android:label="@string/provider_label"
                 android:multiprocess="false"
                 android:exported="true"
@@ -57,15 +58,15 @@
         <service android:name=".EmptyService" />
         <!-- This is used to keep the provider alive long enough to clean up scheduled
              alarms after boot. -->
-        <service android:name=".CalendarReceiver$RemoveScheduledAlarmsEmptyService" />
+     <!--   <service android:name=".CalendarReceiver$RemoveScheduledAlarmsEmptyService" />-->
 
-        <activity android:name="CalendarContentProviderTests" android:label="Calendar Content Provider"
+ <!--       <activity android:name="CalendarContentProviderTests" android:label="Calendar Content Provider"
                 android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.UNIT_TEST" />
             </intent-filter>
-        </activity>
+        </activity>-->
         <receiver android:name="CalendarReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

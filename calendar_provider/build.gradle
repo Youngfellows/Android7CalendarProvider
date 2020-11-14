@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.android.providers.calendar"
+        applicationId "com.android.providers.calendar2"
 
         minSdkVersion 19
         targetSdkVersion 30
