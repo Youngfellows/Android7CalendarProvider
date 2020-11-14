@@ -23,6 +23,7 @@ import com.android.calendarcommon2.RecurrenceProcessor;
 import com.android.calendarcommon2.RecurrenceSet;
 import com.android.providers.calendar.CalendarDatabaseHelper.Tables;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -156,8 +157,9 @@ public class CalendarInstancesHelper {
      * @param localTimezone
      * @param entries The entries to process.
      */
+    @SuppressLint("LogTagMismatch")
     protected void performInstanceExpansion(long begin, long end, String localTimezone,
-            Cursor entries) {
+                                            Cursor entries) {
         // TODO: this only knows how to work with events that have been synced with the server
         RecurrenceProcessor rp = new RecurrenceProcessor();
 

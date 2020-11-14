@@ -16,6 +16,7 @@
 
 package com.android.providers.calendar;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -144,6 +145,7 @@ public class CalendarCache {
      * @param value the value (can be null)
      * @throws CacheException when key is null
      */
+    @SuppressLint("LogTagMismatch")
     public void writeData(String key, String value) throws CacheException {
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
         db.beginTransaction();
@@ -212,6 +214,7 @@ public class CalendarCache {
      * key.
      * @throws CacheException when key or database are null
      */
+    @SuppressLint("LogTagMismatch")
     protected String readDataLocked(SQLiteDatabase db, String key) throws CacheException {
         if (null == db) {
             throw new CacheException("Database cannot be null");

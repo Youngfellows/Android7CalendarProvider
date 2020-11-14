@@ -16,6 +16,7 @@
 
 package com.android.providers.calendar;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -39,6 +40,7 @@ public class CalendarReceiver extends BroadcastReceiver {
     private final ExecutorService executor = Executors.newCachedThreadPool();
     private PowerManager.WakeLock mWakeLock;
 
+    @SuppressLint("InvalidWakeLockTag")
     @Override
     public void onReceive(Context context, Intent intent) {
         if (mWakeLock == null) {
