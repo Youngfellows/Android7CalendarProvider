@@ -37,6 +37,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
@@ -555,6 +556,7 @@ public class CalendarProvider2 extends SQLiteContentProvider implements OnAccoun
 
         return true;
     }
+
 
     protected void initCalendarAlarm() {
         mCalendarAlarm = getOrCreateCalendarAlarmManager();

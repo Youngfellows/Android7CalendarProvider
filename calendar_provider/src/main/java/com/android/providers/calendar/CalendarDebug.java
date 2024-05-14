@@ -28,6 +28,9 @@ import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.view.Window;
 
+import com.android.providers.calendar.permission.PermissionConfigure;
+import com.android.providers.calendar.permission.PermissionReq;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -177,7 +180,25 @@ public class CalendarDebug extends ListActivity {
         mActivity = this;
         mContentResolver = getContentResolver();
         getListView(); // Instantiate, for spinner
-        new FetchInfoTask().execute();
+        if (PermissionReq.checkPermissions(this, PermissionConfigure.CALENDAR_PERMISSIONS)) {
+            new FetchInfoTask().execute();
+        } else {
+            PermissionReq.with(this)
+                    .permissions(PermissionConfigure.CALENDAR_PERMISSIONS)
+                    .result(new PermissionReq.Result() {
+                        @Override
+                        public void onGranted() {
+                            Log.i(TAG, "onGranted:: ");
+                            new FetchInfoTask().execute();
+                        }
+
+                        @Override
+                        public void onDenied() {
+                            Log.i(TAG, "onDenied:: ");
+                        }
+                    })
+                    .request();
+        }
 
     }
 
@@ -192,5 +213,11 @@ public class CalendarDebug extends ListActivity {
         itemMap.put(KEY_TITLE, title);
         itemMap.put(KEY_TEXT, text);
         items.add(itemMap);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionReq.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
