@@ -54,7 +54,7 @@ import java.util.TimeZone;
 
     private static final String TAG = "CalendarDatabaseHelper";
 
-    private static final boolean LOGD = false;
+    private static final boolean LOGD = true;
 
     @VisibleForTesting
     public boolean mInTestMode = false;
@@ -324,6 +324,7 @@ import java.util.TimeZone;
 
     @Override
     public void onOpen(SQLiteDatabase db) {
+        Log.i(TAG, "onOpen:: ");
         mSyncState.onDatabaseOpened(db);
 
         mCalendarsInserter = new DatabaseUtils.InsertHelper(db, Tables.CALENDARS);
@@ -382,6 +383,7 @@ import java.util.TimeZone;
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.i(TAG, "onCreate:: ");
         bootstrapDB(db);
     }
 

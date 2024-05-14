@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.view.Window;
@@ -39,6 +40,7 @@ import java.util.Map;
  * followed by information about the calendar.
  */
 public class CalendarDebug extends ListActivity {
+    private String TAG = this.getClass().getSimpleName();
     private static final String[] CALENDARS_PROJECTION = new String[]{
             CalendarContract.Calendars._ID,
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,
@@ -85,6 +87,7 @@ public class CalendarDebug extends ListActivity {
                         CALENDARS_PROJECTION,
                         null, null /* selectionArgs */,
                         CalendarContract.Calendars.DEFAULT_SORT_ORDER);
+                Log.i(TAG, "doInBackground:: cursor=" + cursor);
                 if (cursor == null) {
                     addItem(items, mActivity.getString(R.string.calendar_info_error), "");
                 } else {
@@ -170,6 +173,7 @@ public class CalendarDebug extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        Log.i(TAG, "onCreate:: ");
         mActivity = this;
         mContentResolver = getContentResolver();
         getListView(); // Instantiate, for spinner

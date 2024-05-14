@@ -52,6 +52,7 @@ public abstract class SQLiteContentProvider extends ContentProvider
 
     @Override
     public boolean onCreate() {
+        Log.i(TAG, "onCreate:: ");
         Context context = getContext();
         mOpenHelper = getDatabaseHelper(context);
         return true;
@@ -89,6 +90,7 @@ public abstract class SQLiteContentProvider extends ContentProvider
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        Log.i(TAG, "insert:: uri=" + uri.getAuthority());
         Uri result = null;
         boolean applyingBatch = applyingBatch();
         boolean isCallerSyncAdapter = getIsCallerSyncAdapter(uri);

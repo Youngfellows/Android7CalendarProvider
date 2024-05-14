@@ -86,7 +86,7 @@ import java.util.regex.Pattern;
  * is defined in {@link android.provider.CalendarContract}.
  */
 public class CalendarProvider2 extends SQLiteContentProvider implements OnAccountsUpdateListener {
-    
+
     protected static final String TAG = CalendarProvider2.class.getSimpleName();
 
     // Turn on for b/22449592
@@ -508,6 +508,8 @@ public class CalendarProvider2 extends SQLiteContentProvider implements OnAccoun
     @Override
     public boolean onCreate() {
         super.onCreate();
+        Log.i(TAG, "onCreate:: ");
+        Log.w(TAG, Log.getStackTraceString(new RuntimeException("onCreate")));
         setAppOps(AppOpsManager.OP_READ_CALENDAR, AppOpsManager.OP_WRITE_CALENDAR);
         try {
             return initialize();
@@ -3171,6 +3173,7 @@ public class CalendarProvider2 extends SQLiteContentProvider implements OnAccoun
             case EXTENDED_PROPERTIES:
             {
                 if (callerIsSyncAdapter) {
+                    //Log.i(TAG, Log.getStackTraceString(new IllegalArgumentException("deleteInTransaction")));
                     return mDb.delete(Tables.EXTENDED_PROPERTIES, selection, selectionArgs);
                 } else {
                     return deleteFromEventRelatedTable(Tables.EXTENDED_PROPERTIES, uri, selection,
