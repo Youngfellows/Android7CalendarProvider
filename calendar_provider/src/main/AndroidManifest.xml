@@ -115,6 +115,7 @@
             </intent-filter>
         </receiver>
         <service android:name="CalendarProviderIntentService"/>
+        <activity android:name=".permission.PermissionActivity"/>
 
     </application>
 </manifest>

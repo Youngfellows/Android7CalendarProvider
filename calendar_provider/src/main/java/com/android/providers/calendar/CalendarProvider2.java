@@ -65,6 +65,7 @@ import com.android.calendarcommon2.RecurrenceProcessor;
 import com.android.calendarcommon2.RecurrenceSet;
 import com.android.providers.calendar.CalendarDatabaseHelper.Tables;
 import com.android.providers.calendar.CalendarDatabaseHelper.Views;
+import com.android.providers.calendar.permission.PermissionActivity;
 import com.google.android.collect.Sets;
 import com.google.common.annotations.VisibleForTesting;
 
@@ -513,6 +514,7 @@ public class CalendarProvider2 extends SQLiteContentProvider implements OnAccoun
         Log.w(TAG, Log.getStackTraceString(new RuntimeException("onCreate")));
         setAppOps(AppOpsManager.OP_READ_CALENDAR, AppOpsManager.OP_WRITE_CALENDAR);
         try {
+            //PermissionActivity.start(this.getContext());
             return initialize();
         } catch (RuntimeException e) {
             if (Log.isLoggable(TAG, Log.ERROR)) {
