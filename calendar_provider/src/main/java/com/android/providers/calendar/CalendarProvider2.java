@@ -86,9 +86,9 @@ import java.util.regex.Pattern;
  * is defined in {@link android.provider.CalendarContract}.
  */
 public class CalendarProvider2 extends SQLiteContentProvider implements OnAccountsUpdateListener {
+    
+    protected static final String TAG = CalendarProvider2.class.getSimpleName();
 
-
-    protected static final String TAG = "CalendarProvider2";
     // Turn on for b/22449592
     static final boolean DEBUG_INSTANCES = Log.isLoggable(TAG, Log.DEBUG);
 
