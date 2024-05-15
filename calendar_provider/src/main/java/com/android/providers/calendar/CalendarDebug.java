@@ -180,7 +180,8 @@ public class CalendarDebug extends ListActivity {
         mActivity = this;
         mContentResolver = getContentResolver();
         getListView(); // Instantiate, for spinner
-        if (PermissionReq.checkPermissions(this, PermissionConfigure.CALENDAR_PERMISSIONS)) {
+        new FetchInfoTask().execute();
+        /*if (PermissionReq.checkPermissions(this, PermissionConfigure.CALENDAR_PERMISSIONS)) {
             new FetchInfoTask().execute();
         } else {
             PermissionReq.with(this)
@@ -198,7 +199,7 @@ public class CalendarDebug extends ListActivity {
                         }
                     })
                     .request();
-        }
+        }*/
 
     }
 
